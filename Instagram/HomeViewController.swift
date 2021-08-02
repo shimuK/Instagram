@@ -70,14 +70,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.setPostData(postArray[indexPath.row])
         
         // セル内のボタンのアクションをソースコードで設定する
-        cell.likeButton.addTarget(self, action:#selector(handleButton(_:forEvent:)), for: .touchUpInside)
-
+        cell.likeButton.addTarget(self, action:#selector(handleLikeButton(_:forEvent:)), for: .touchUpInside)
+        
+        // セル内のボタンのアクションをソースコードで設定する
+        cell.cmntButton.addTarget(self, action:#selector(handleCmntButton(_:forEvent:)), for: .touchUpInside)
 
         return cell
     }
     
-    // セル内のボタンがタップされた時に呼ばれるメソッド
-    @objc func handleButton(_ sender: UIButton, forEvent event: UIEvent) {
+    // セル内のLikeボタンがタップされた時に呼ばれるメソッド
+    @objc func handleLikeButton(_ sender: UIButton, forEvent event: UIEvent) {
         print("DEBUG_PRINT: likeボタンがタップされました。")
 
         // タップされたセルのインデックスを求める
@@ -103,6 +105,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
             postRef.updateData(["likes": updateValue])
         }
+    }
+
+    // セル内のコメントボタンがタップされた時に呼ばれるメソッド
+    @objc func handleCmntButton(_ sender: UIButton, forEvent event: UIEvent) {
+        print("DEBUG_PRINT: コメントボタンがタップされました。")
+        
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+
+        let commnetViewController = self.storyboard?.instantiateViewController(withIdentifier: "Comment") as! CmntViewController
+        // 値渡し
+        commnetViewController.postData = postArray[indexPath!.row]
+        self.present(commnetViewController, animated: true, completion: nil)
     }
 
 }

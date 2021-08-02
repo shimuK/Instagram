@@ -41,8 +41,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS5-wb-fXd">
-                        <rect key="frame" x="130" y="367.5" width="178" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="220" y="369" width="88" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -59,6 +59,13 @@
                             <constraint firstAttribute="height" constant="120" id="0AQ-NG-mQu"/>
                         </constraints>
                     </tableView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSj-ON-ah4">
+                        <rect key="frame" x="130" y="358" width="80" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="BNE-Cv-13Z"/>
+                        </constraints>
+                        <state key="normal" title="コメント" backgroundImage="btn"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="rnD-dF-0iV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0fY-E0-ibt"/>
@@ -66,15 +73,17 @@
                     <constraint firstAttribute="trailingMargin" secondItem="S0b-r7-osE" secondAttribute="trailing" constant="10" id="4fa-NQ-0AW"/>
                     <constraint firstItem="S0b-r7-osE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="BJe-AB-hcl"/>
                     <constraint firstItem="Y48-H6-OqG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="CPz-D3-7Xr"/>
+                    <constraint firstItem="rSj-ON-ah4" firstAttribute="leading" secondItem="FSM-7s-Og2" secondAttribute="trailing" constant="10" id="CT7-q2-Ggk"/>
                     <constraint firstItem="rnD-dF-0iV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Ej9-fW-KOw"/>
                     <constraint firstAttribute="bottomMargin" secondItem="GAf-tW-e4J" secondAttribute="bottom" constant="10" id="GUq-FC-YFa"/>
                     <constraint firstItem="GAf-tW-e4J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="I4y-aI-p2e"/>
-                    <constraint firstItem="nS5-wb-fXd" firstAttribute="leading" secondItem="FSM-7s-Og2" secondAttribute="trailing" constant="10" id="KjH-AN-QIW"/>
+                    <constraint firstItem="nS5-wb-fXd" firstAttribute="centerY" secondItem="Y48-H6-OqG" secondAttribute="centerY" id="ODL-gl-9MB"/>
                     <constraint firstItem="FSM-7s-Og2" firstAttribute="centerY" secondItem="Y48-H6-OqG" secondAttribute="centerY" id="R57-fW-9xE"/>
                     <constraint firstItem="FSM-7s-Og2" firstAttribute="leading" secondItem="Y48-H6-OqG" secondAttribute="trailing" constant="10" id="Rij-lF-NKj"/>
+                    <constraint firstItem="nS5-wb-fXd" firstAttribute="leading" secondItem="rSj-ON-ah4" secondAttribute="trailing" constant="10" id="TAD-Tc-g8i"/>
                     <constraint firstItem="S0b-r7-osE" firstAttribute="top" secondItem="Y48-H6-OqG" secondAttribute="bottom" constant="10" id="UEs-0T-P5i"/>
+                    <constraint firstItem="rSj-ON-ah4" firstAttribute="centerY" secondItem="Y48-H6-OqG" secondAttribute="centerY" id="WWF-JF-GRi"/>
                     <constraint firstAttribute="trailingMargin" secondItem="nS5-wb-fXd" secondAttribute="trailing" constant="10" id="Wsr-Kt-2NS"/>
-                    <constraint firstItem="nS5-wb-fXd" firstAttribute="centerY" secondItem="Y48-H6-OqG" secondAttribute="centerY" id="fsx-OA-alW"/>
                     <constraint firstItem="GAf-tW-e4J" firstAttribute="top" secondItem="S0b-r7-osE" secondAttribute="bottom" constant="10" id="iMX-Qj-2H5"/>
                     <constraint firstItem="Y48-H6-OqG" firstAttribute="top" secondItem="rnD-dF-0iV" secondAttribute="bottom" constant="10" id="szy-IJ-MBd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GAf-tW-e4J" secondAttribute="trailing" constant="10" id="te9-sC-tHM"/>
@@ -83,6 +92,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="captionLabel" destination="S0b-r7-osE" id="3o3-YA-5yq"/>
+                <outlet property="cmntButton" destination="rSj-ON-ah4" id="iSV-y9-ze8"/>
                 <outlet property="cmntTableView" destination="GAf-tW-e4J" id="5GK-TQ-eQ6"/>
                 <outlet property="dateLabel" destination="nS5-wb-fXd" id="QLX-8a-bgm"/>
                 <outlet property="likeButton" destination="Y48-H6-OqG" id="3P0-Em-EMv"/>
@@ -93,6 +103,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="btn" width="300" height="40"/>
         <image name="like_none" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -15,6 +15,7 @@ class PostTableViewCell: UITableViewCell, UITableViewDelegate {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var cmntButton: UIButton!
     @IBOutlet weak var cmntTableView: UITableView! {
         didSet {
             let nib = UINib(nibName: "CmntTableViewCell", bundle: nil)
