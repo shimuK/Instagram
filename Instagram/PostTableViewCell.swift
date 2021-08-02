@@ -8,17 +8,27 @@
 import UIKit
 import FirebaseUI
 
-class PostTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell, UITableViewDelegate {
     
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var cmntTableView: UITableView! {
+        didSet {
+            let nib = UINib(nibName: "CmntTableViewCell", bundle: nil)
+            cmntTableView.register(nib, forCellReuseIdentifier: "cmntCell")
+        }
+    }
+    
+    var comments:[String] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cmntTableView.delegate = self
+        cmntTableView.dataSource = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -58,6 +68,33 @@ class PostTableViewCell: UITableViewCell {
             let buttonImage = UIImage(named: "like_none")
             self.likeButton.setImage(buttonImage, for: .normal)
         }
+        
+        // コメントの表示
+        comments = postData.comments
+        // TableViewの表示を更新する
+        self.cmntTableView.reloadData()
     }
-    
 }
+
+extension PostTableViewCell: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return self.comments.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cmntCell") as! CmntTableViewCell
+        let cmntArray:[String] = self.comments[indexPath.row].components(separatedBy:",")
+        cell.cmntLabel.text = "\(cmntArray[0]) : \(cmntArray[1])"
+
+      return cell
+    }
+}
+
+//extension PostTableViewCell: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 400.0
+//    }
+//
+//}
